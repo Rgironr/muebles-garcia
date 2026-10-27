@@ -1,0 +1,102 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import IconoWhatsApp from '../../components/IconoWhatsApp.astro';
+import { CATEGORIAS, enlaceWhatsApp, formatoPrecio } from '../../config';
+
+export async function getStaticPaths() {
+  const productos = await getCollection('productos');
+  return productos.map((producto) => ({
+    params: { categoria: producto.data.categoria, codigo: producto.data.codigo.toLowerCase() },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props as { producto: CollectionEntry<'productos'> };
+const p = producto.data;
+const categoria = CATEGORIAS[p.categoria];
+const carpeta = `/img/productos/${p.codigo.toLowerCase()}`;
+const fotos = p.fotos.map((f) => `${carpeta}/${f}`);
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const mensaje = p.disponible
+  ? `Hola, me interesa ${p.nombre} (${p.codigo}). ¿Me pueden dar más información?\n${url}`
+  : `Hola, vi ${p.nombre} (${p.codigo}) agotado. ¿Cuándo vuelve a llegar o qué parecido tienen?\n${url}`;
+---
+<Base titulo={p.nombre} descripcion={p.descripcion.trim()} imagen={fotos[0]}>
+  <div class="contenedor">
+    <a class="volver" href={`/${p.categoria}/`}>Volver a {categoria.nombre}</a>
+
+    <article class="ficha">
+      <div class="galeria">
+        <img class="galeria-principal" src={fotos[0]} alt={p.nombre} width="800" height="600" />
+        {fotos.length > 1 && (
+          <ul class="miniaturas" role="list">
+            {fotos.map((f, i) => (
+              <li>
+                <button type="button" data-foto={f} aria-label={`Ver foto ${i + 1} de ${fotos.length}`} aria-pressed={i === 0 ? 'true' : 'false'}>
+                  <img src={f} alt="" width="160" height="120" loading="lazy" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div class="datos">
+        <h1>{p.nombre}</h1>
+        <p class="precio">{formatoPrecio(p.precio)}</p>
+        <p class:list={['estado', { agotado: !p.disponible }]}>
+          {p.disponible ? 'Disponible' : 'Agotado por ahora'}
+        </p>
+        <p class="descripcion">{p.descripcion}</p>
+
+        <a class="boton boton-whatsapp pedir" href={enlaceWhatsApp(mensaje)} target="_blank" rel="noopener">
+          <IconoWhatsApp /> {p.disponible ? 'Pedir por WhatsApp' : 'Preguntar cuándo llega'}
+        </a>
+
+        <dl class="detalles">
+          {p.medidas && (<><dt>Medidas</dt><dd>{p.medidas}</dd></>)}
+          {p.material && (<><dt>Material</dt><dd>{p.material}</dd></>)}
+          {p.colores.length > 0 && (<><dt>{p.colores.length > 1 ? 'Colores' : 'Color'}</dt><dd>{p.colores.join(', ')}</dd></>)}
+          <dt>Código</dt><dd>{p.codigo}</dd>
+        </dl>
+      </div>
+    </article>
+  </div>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.galeria').forEach((galeria) => {
+    const principal = galeria.querySelector<HTMLImageElement>('.galeria-principal');
+    galeria.querySelectorAll<HTMLButtonElement>('[data-foto]').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        if (principal) principal.src = boton.dataset.foto!;
+        galeria.querySelectorAll('[data-foto]').forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
+      });
+    });
+  });
+</script>
+
+<style>
+  .volver { display: inline-block; margin-block: 1.5rem; font-weight: 500; color: var(--texto-suave); }
+  .ficha { display: grid; gap: 2rem; }
+  @media (min-width: 56rem) { .ficha { grid-template-columns: 7fr 5fr; gap: 3.5rem; align-items: start; } }
+
+  .galeria-principal { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--piedra); border-radius: 4px; }
+  .miniaturas { list-style: none; padding: 0; margin: .75rem 0 0; display: flex; gap: .75rem; }
+  .miniaturas button { padding: 0; border: 2px solid transparent; border-radius: 4px; background: var(--piedra); cursor: pointer; width: 5.5rem; overflow: hidden; display: block; }
+  .miniaturas button[aria-pressed='true'] { border-color: var(--carbon); }
+  .miniaturas img { display: block; width: 100%; height: auto; }
+
+  .datos h1 { font-size: clamp(1.875rem, 4.5vw, 2.75rem); margin-bottom: .5rem; }
+  .precio { font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; color: var(--ocre-oscuro); margin: 0; }
+  .estado { margin: .25rem 0 0; font-weight: 500; color: var(--whatsapp); }
+  .estado.agotado { color: var(--texto-suave); }
+  .descripcion { max-width: 60ch; margin: 1.25rem 0 1.5rem; }
+  .pedir { width: 100%; justify-content: center; font-size: 1.0625rem; padding-block: 1rem; }
+  @media (min-width: 56rem) { .pedir { width: auto; } }
+
+  .detalles { display: grid; grid-template-columns: max-content 1fr; gap: .625rem 1.25rem; margin: 2rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--linea); }
+  .detalles dt { font-weight: 500; color: var(--texto-suave); }
+  .detalles dd { margin: 0; }
+</style>

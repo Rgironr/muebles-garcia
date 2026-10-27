@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F6EFE6"/>
+<path d="M249.5 70.5 A70 70 0 1 0 270 120" fill="none" stroke="#B5562F" stroke-width="22" stroke-linecap="round" transform="translate(0,-10)"/>
+<rect x="200" y="99" width="82" height="22" rx="8" fill="#3A2A20"/>
+<path d="M160 176 L150 200 M240 176 L250 200" stroke="#3A2A20" stroke-width="9" stroke-linecap="round"/>
+<text x="200" y="238" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="8" fill="#B5562F">MUEBLES</text>
+<text x="200" y="278" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="bold" fill="#3A2A20">García</text></svg>

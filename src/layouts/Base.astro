@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import LogoIcono from '../components/LogoIcono.astro';
+import IconoWhatsApp from '../components/IconoWhatsApp.astro';
+import { NEGOCIO, CATEGORIAS, enlaceWhatsApp } from '../config';
+
+interface Props { titulo?: string; descripcion?: string; imagen?: string }
+const { titulo, descripcion = 'Recámaras y comedores en Muebles García. Mira los modelos y pide el tuyo por WhatsApp. Envío a domicilio.', imagen } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} | ${NEGOCIO.nombre}` : `${NEGOCIO.nombre}: muebles para tu hogar`;
+const ruta = Astro.url.pathname;
+const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descripcion} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href={new URL(ruta, Astro.site).href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:site_name" content={NEGOCIO.nombre} />
+  <meta property="og:title" content={tituloCompleto} />
+  <meta property="og:description" content={descripcion} />
+  {imagenOg && <meta property="og:image" content={imagenOg} />}
+  <meta name="theme-color" content="#24282C" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;800&family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  {NEGOCIO.productosDeEjemplo && (
+    <p class="aviso">Sitio en construcción: los productos y precios son de ejemplo.</p>
+  )}
+
+  <header class="encabezado">
+    <div class="contenedor encabezado-fila">
+      <a class="marca" href="/" aria-label={`${NEGOCIO.nombre}, inicio`}>
+        <LogoIcono class="marca-icono" />
+        <span class="marca-texto">
+          <span class="marca-muebles">Muebles</span>
+          <span class="marca-garcia">García</span>
+        </span>
+      </a>
+      <nav aria-label="Secciones">
+        <ul>
+          {Object.entries(CATEGORIAS).map(([slug, c]) => (
+            <li><a href={`/${slug}/`} aria-current={ruta.startsWith(`/${slug}`) ? 'page' : undefined}>{c.nombre}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <slot />
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-rejilla">
+      <div>
+        <p class="pie-marca">{NEGOCIO.nombre}</p>
+        <p>Muebles y artículos para el hogar. Venta al público y mayoreo.</p>
+      </div>
+      <div>
+        <h2 class="pie-titulo">Visítanos</h2>
+        <p>{NEGOCIO.direccion}<br />{NEGOCIO.horario}</p>
+      </div>
+      <div>
+        <h2 class="pie-titulo">Escríbenos</h2>
+        <p>WhatsApp {NEGOCIO.whatsappVisible}<br />{NEGOCIO.zonaEnvios}</p>
+        <a class="boton boton-whatsapp" href={enlaceWhatsApp('Hola, vi su sitio web y quiero información.')} target="_blank" rel="noopener">
+          <IconoWhatsApp /> Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .saltar { position: absolute; left: -999px; }
+  .saltar:focus { left: 1rem; top: 1rem; z-index: 10; background: #fff; padding: .5rem 1rem; }
+  .aviso { margin: 0; background: var(--ocre-claro); color: var(--carbon); text-align: center; font-size: .875rem; padding: .5rem var(--margen); }
+
+  .encabezado { border-bottom: 1px solid var(--linea); background: var(--blanco); }
+  .encabezado-fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+  .marca { display: flex; align-items: center; gap: .625rem; color: var(--carbon); text-decoration: none; }
+  .marca :global(.marca-icono) { width: 3.25rem; height: auto; flex: none; }
+  .marca-texto { display: flex; flex-direction: column; line-height: 1; font-family: var(--f-display); }
+  .marca-muebles { font-weight: 500; font-size: .75rem; letter-spacing: .32em; }
+  .marca-garcia { font-weight: 800; font-size: 1.375rem; letter-spacing: .02em; margin-top: .125rem; }
+
+  nav ul { list-style: none; display: flex; gap: .25rem; margin: 0; padding: 0; }
+  nav a {
+    display: block; padding: .5rem .75rem; border-radius: 99px;
+    font-family: var(--f-display); font-weight: 700; font-size: .9375rem;
+    color: var(--carbon); text-decoration: none;
+  }
+  nav a:hover { background: var(--piedra); }
+  nav a[aria-current='page'] { background: var(--carbon); color: #fff; }
+
+  .pie { background: var(--carbon); color: #E4E2DE; margin-top: 5rem; padding-block: 3rem; }
+  .pie p { margin: 0 0 1rem; }
+  .pie-rejilla { display: grid; gap: 2rem; }
+  @media (min-width: 48rem) { .pie-rejilla { grid-template-columns: 1.2fr 1fr 1fr; } }
+  .pie-marca { font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; color: #fff; }
+  .pie-titulo { font-size: 1.0625rem; color: var(--ocre-claro); margin: 0 0 .5rem; letter-spacing: 0; }
+
+  @media (max-width: 26rem) {
+    .marca :global(.marca-icono) { width: 2.5rem; }
+    .marca-garcia { font-size: 1.125rem; }
+    nav a { padding: .5rem .5rem; font-size: .875rem; }
+  }
+</style>

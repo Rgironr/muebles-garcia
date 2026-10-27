@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#FBF7F0"/>
+<defs><path id="t" d="M124 150 A76 76 0 1 1 276 150"/><path id="b" d="M112 150 A88 88 0 0 0 288 150"/></defs>
+<circle cx="200" cy="150" r="100" fill="none" stroke="#5B3A24" stroke-width="5"/>
+<circle cx="200" cy="150" r="68" fill="none" stroke="#5B3A24" stroke-width="2"/>
+<g fill="none" stroke="#C49A4A" stroke-width="1.5" opacity="0.55"><ellipse cx="196" cy="154" rx="52" ry="44"/><ellipse cx="194" cy="156" rx="36" ry="30"/><ellipse cx="192" cy="158" rx="20" ry="16"/></g>
+<text font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="#5B3A24"><textPath href="#t" startOffset="50%" text-anchor="middle">MUEBLES GARCÍA</textPath></text>
+<text font-family="Georgia, serif" font-size="12" letter-spacing="4" fill="#C49A4A"><textPath href="#b" startOffset="50%" text-anchor="middle">MUEBLES Y HOGAR</textPath></text>
+<circle cx="116" cy="150" r="4" fill="#C49A4A"/><circle cx="284" cy="150" r="4" fill="#C49A4A"/>
+<text x="200" y="170" text-anchor="middle" font-family="Georgia, serif" font-size="54" font-weight="bold" fill="#5B3A24">MG</text></svg>

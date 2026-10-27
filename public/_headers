@@ -1,0 +1,6 @@
+# Cloudflare Pages: caché larga para archivos con hash y fotos de productos.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/*
+  Cache-Control: public, max-age=604800

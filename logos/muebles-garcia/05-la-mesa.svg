@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F3EEDF"/>
+<text x="200" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="10" fill="#A0703C">MUEBLES</text>
+<text x="200" y="168" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="bold" letter-spacing="4" fill="#4F5D2F">GARCÍA</text>
+<rect x="88" y="178" width="224" height="11" rx="3" fill="#A0703C"/>
+<path d="M106 189 L98 230 M294 189 L302 230" stroke="#A0703C" stroke-width="7" stroke-linecap="round"/>
+<path d="M102 212 H298" stroke="#A0703C" stroke-width="3"/>
+<text x="200" y="262" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#4F5D2F">para tu hogar</text></svg>

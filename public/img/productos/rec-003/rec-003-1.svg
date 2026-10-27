@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="#ECE7E1"/><rect y="470" width="800" height="130" fill="#000" opacity=".05"/>
+<rect x="180" y="190" width="440" height="190" rx="14" fill="#5B6066"/>
+<rect x="205" y="215" width="390" height="140" rx="10" fill="#fff" opacity=".18"/>
+<rect x="150" y="360" width="500" height="80" rx="10" fill="#fff"/>
+<rect x="150" y="380" width="500" height="85" rx="10" fill="#EBD9BD"/>
+<rect x="220" y="320" width="150" height="55" rx="22" fill="#fff"/><rect x="430" y="320" width="150" height="55" rx="22" fill="#fff"/>
+<rect x="160" y="465" width="14" height="18" fill="#24282C"/><rect x="626" y="465" width="14" height="18" fill="#24282C"/>
+<rect x="40" y="350" width="95" height="115" rx="6" fill="#5B6066"/><line x1="40" y1="405" x2="135" y2="405" stroke="#24282C" stroke-opacity=".3" stroke-width="3"/>
+<rect x="665" y="350" width="95" height="115" rx="6" fill="#5B6066"/><line x1="665" y1="405" x2="760" y2="405" stroke="#24282C" stroke-opacity=".3" stroke-width="3"/>
+<path d="M70 300 h36 l10 40 h-56z" fill="#EBD9BD"/><rect x="85" y="340" width="6" height="10" fill="#24282C"/><text x="780" y="580" text-anchor="end" font-family="sans-serif" font-size="18" fill="#24282C" opacity=".45">Foto provisional</text></svg>

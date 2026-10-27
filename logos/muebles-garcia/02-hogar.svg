@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#FFFFFF"/>
+<path d="M130 120 L200 60 L270 120" fill="none" stroke="#1F3A5F" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M148 112 V185 H252 V112" fill="none" stroke="#1F3A5F" stroke-width="6" stroke-linecap="round"/>
+<rect x="178" y="108" width="10" height="52" rx="3" fill="#E0A526"/>
+<rect x="178" y="146" width="46" height="10" rx="3" fill="#E0A526"/>
+<path d="M183 156 V178 M219 156 V178" stroke="#E0A526" stroke-width="6" stroke-linecap="round"/>
+<text x="200" y="236" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" letter-spacing="2" fill="#1F3A5F">MUEBLES GARCÍA</text>
+<text x="200" y="264" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" fill="#E0A526">MUEBLES Y HOGAR</text></svg>

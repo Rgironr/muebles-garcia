@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# Documentos privados del cliente (cotizaciones, contratos)
+*.pdf
+
+# Información privada del proyecto
+privado/
