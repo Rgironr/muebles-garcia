@@ -47,8 +47,8 @@ Prioridad: **bajo costo, rápido, fácil de mantener para Rafael.**
 | Generador | **Astro 5** — ✅ confirmado | Genera una página por producto a partir de archivos de datos (`npm run dev` / `npm run build`) |
 | Datos de productos | Un `.md` por producto en `src/content/productos/` (esquema en `src/content.config.ts`) | Altas/cambios/bajas = agregar, editar o borrar un archivo |
 | Imágenes | `public/img/productos/<codigo-en-minúsculas>/` optimizadas (WebP, ≤ 200 KB) | Carga rápida en celular |
-| Hospedaje | **Cloudflare Pages (plan gratuito)** — ✅ confirmado | Despliegue automático al subir cambios a GitHub; CDN global, HTTPS incluido |
-| Control de versiones | Git + GitHub | Historial de cambios y respaldo |
+| Hospedaje | **Cloudflare Pages (plan gratuito)** — ✅ publicado en https://muebles-garcia.pages.dev (preset Astro, build `npm run build`, salida `dist`) | Despliegue automático al subir cambios a GitHub; CDN global, HTTPS incluido |
+| Control de versiones | Git + GitHub: https://github.com/Rgironr/muebles-garcia (público, rama `main`) | Historial de cambios y respaldo |
 | Dominio | Por definir (ej. `mueblesgarcia.com.mx`). Mientras tanto: subdominio gratuito `*.pages.dev` | Costo anual a cargo de Amanda; DNS administrable desde Cloudflare |
 
 ### Límites del plan gratuito de Cloudflare Pages a considerar
@@ -138,3 +138,4 @@ Reglas:
 | 2026-10-25 | Se crean 5 propuestas de logotipo en `logos/muebles-garcia/` (SVG). |
 | 2026-10-27 | Se elige el logotipo 1 (casa con sofá). Colores del sitio: carbón `#24282C`, ocre `#B07A3A`, ocre claro `#EBD9BD`, piedra `#ECEAE6`. Tipografía Red Hat Display / Red Hat Text. |
 | 2026-10-27 | Sitio en **Astro 5**. Primeras secciones: **Recámaras** y **Comedores**. Se muestran precios. WhatsApp 55 9143 9289. Productos de ejemplo con fotos provisionales hasta tener las reales (`productosDeEjemplo` en `src/config.ts`). |
+| 2026-10-27 | Repositorio público en GitHub y sitio publicado en Cloudflare Pages: https://muebles-garcia.pages.dev. La cotización se movió a `privado/` (fuera de Git). |
