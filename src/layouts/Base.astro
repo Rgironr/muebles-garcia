@@ -88,17 +88,17 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
   .aviso { margin: 0; background: var(--ocre-claro); color: var(--carbon); text-align: center; font-size: .875rem; padding: .5rem var(--margen); }
 
   .encabezado { border-bottom: 1px solid var(--linea); background: var(--blanco); }
-  .encabezado-fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
-  .marca { display: flex; align-items: center; gap: .625rem; color: var(--carbon); text-decoration: none; }
-  .marca :global(.marca-icono) { width: 3.25rem; height: auto; flex: none; }
+  .encabezado-fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 6.5rem; padding-block: .75rem; }
+  .marca { display: flex; align-items: center; gap: .875rem; color: var(--carbon); text-decoration: none; }
+  .marca :global(.marca-icono) { width: 5rem; height: auto; flex: none; }
   .marca-texto { display: flex; flex-direction: column; line-height: 1; font-family: var(--f-display); }
-  .marca-muebles { font-weight: 500; font-size: .75rem; letter-spacing: .32em; }
-  .marca-garcia { font-weight: 800; font-size: 1.375rem; letter-spacing: .02em; margin-top: .125rem; }
+  .marca-muebles { font-weight: 500; font-size: 1.0625rem; letter-spacing: .34em; }
+  .marca-garcia { font-weight: 800; font-size: 2.125rem; letter-spacing: .02em; margin-top: .125rem; }
 
   nav ul { list-style: none; display: flex; gap: .25rem; margin: 0; padding: 0; }
   nav a {
-    display: block; padding: .5rem .75rem; border-radius: 99px;
-    font-family: var(--f-display); font-weight: 700; font-size: .9375rem;
+    display: block; padding: .5rem .875rem; border-radius: 99px;
+    font-family: var(--f-display); font-weight: 700; font-size: 1.0625rem;
     color: var(--carbon); text-decoration: none;
   }
   nav a:hover { background: var(--piedra); }
@@ -112,8 +112,17 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
   .pie-titulo { font-size: 1.0625rem; color: var(--ocre-claro); margin: 0 0 .5rem; letter-spacing: 0; }
 
   @media (max-width: 26rem) {
-    .marca :global(.marca-icono) { width: 2.5rem; }
-    .marca-garcia { font-size: 1.125rem; }
+    .marca :global(.marca-icono) { width: 3.5rem; }
+    .marca-garcia { font-size: 1.5rem; }
+    .marca-muebles { font-size: .8125rem; letter-spacing: .3em; }
+    .marca { gap: .5rem; }
+    .encabezado-fila { min-height: 5rem; gap: .5rem; }
     nav a { padding: .5rem .5rem; font-size: .875rem; }
+  }
+  @media (max-width: 22.5rem) {
+    .marca :global(.marca-icono) { width: 2.75rem; }
+    .marca-garcia { font-size: 1.25rem; }
+    .marca-muebles { font-size: .6875rem; letter-spacing: .26em; }
+    nav a { padding: .375rem .4rem; font-size: .8125rem; }
   }
 </style>
