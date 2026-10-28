@@ -1,10 +1,10 @@
 ---
 // Foto dentro de la silueta de casa del logotipo: el tejado se dibuja encima.
-interface Props { src: string; alt?: string; class?: string }
-const { src, alt = '', class: clase } = Astro.props;
+interface Props { src: string; alt?: string; class?: string; posicion?: string }
+const { src, alt = '', class: clase, posicion = 'center' } = Astro.props;
 ---
 <div class:list={['casa', clase]}>
-  <img src={src} alt={alt} width="800" height="600" />
+  <img src={src} alt={alt} width="800" height="600" style={`object-position: ${posicion}`} />
   <svg class="casa-tejado" viewBox="0 0 100 125" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
     <path d="M-9 37.25 L50 -7 L109 37.25" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="square" />
     <g fill="currentColor"><rect x="45" y="12" width="4.5" height="4.5"/><rect x="50.5" y="12" width="4.5" height="4.5"/><rect x="45" y="17.5" width="4.5" height="4.5"/><rect x="50.5" y="17.5" width="4.5" height="4.5"/></g>
