@@ -5,7 +5,7 @@ import IconoWhatsApp from '../components/IconoWhatsApp.astro';
 import { NEGOCIO, CATEGORIAS, enlaceWhatsApp, enlaceComoLlegar } from '../config';
 
 interface Props { titulo?: string; descripcion?: string; imagen?: string }
-const { titulo, descripcion = 'Recámaras y comedores en Muebles García. Mira los modelos y pide el tuyo por WhatsApp. Envío a domicilio.', imagen } = Astro.props;
+const { titulo, descripcion = 'Recámaras, comedores y cocinas integrales en Muebles García. Mira los modelos y pide el tuyo por WhatsApp. Envío a domicilio.', imagen } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | ${NEGOCIO.nombre}` : `${NEGOCIO.nombre}: muebles para tu hogar`;
 const ruta = Astro.url.pathname;
 const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
@@ -49,7 +49,7 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
       <nav aria-label="Secciones">
         <ul>
           {Object.entries(CATEGORIAS).map(([slug, c]) => (
-            <li><a href={`/${slug}/`} aria-current={ruta.startsWith(`/${slug}`) ? 'page' : undefined}>{c.nombre}</a></li>
+            <li><a href={`/${slug}/`} aria-current={ruta.startsWith(`/${slug}`) ? 'page' : undefined}>{'menu' in c ? c.menu : c.nombre}</a></li>
           ))}
         </ul>
       </nav>
@@ -113,6 +113,12 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
   .pie-marca { font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; color: #fff; }
   .pie-titulo { font-size: 1.0625rem; color: var(--ocre-claro); margin: 0 0 .5rem; letter-spacing: 0; }
 
+  /* En celular el menú baja a su propio renglón para que quepan todas las secciones. */
+  @media (max-width: 40rem) {
+    .encabezado-fila { flex-wrap: wrap; row-gap: .25rem; }
+    nav { flex-basis: 100%; }
+    nav ul { margin-inline: -.5rem; }
+  }
   @media (max-width: 26rem) {
     .marca :global(.marca-icono) { width: 3.5rem; }
     .marca-garcia { font-size: 1.5rem; }

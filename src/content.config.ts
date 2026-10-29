@@ -7,7 +7,7 @@ const productos = defineCollection({
   schema: z.object({
     codigo: z.string().regex(/^[A-Z]{3}-\d{3}$/),
     nombre: z.string(),
-    categoria: z.enum(['recamaras', 'comedores']),
+    categoria: z.enum(['recamaras', 'comedores', 'cocinas']),
     precio: z.number().nullable().optional(),
     precio_mayoreo: z.number().nullable().optional(), // Nunca se publica.
     disponible: z.boolean().default(true),

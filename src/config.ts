@@ -35,6 +35,14 @@ export const CATEGORIAS = {
     portada: '/img/portadas/comedores.webp',
     portadaPosicion: 'center',
   },
+  cocinas: {
+    nombre: 'Cocinas integrales',
+    menu: 'Cocinas', // nombre corto para el menú
+    prefijo: 'COC',
+    descripcion: 'Alacenas, gabinetes y cubiertas a la medida de tu cocina.',
+    portada: '/img/portadas/cocinas.webp',
+    portadaPosicion: 'center',
+  },
 } as const;
 
 export type Categoria = keyof typeof CATEGORIAS;

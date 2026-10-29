@@ -78,7 +78,7 @@ fecha_alta: 2026-10-22
 ```
 
 ### Prefijos de categoría (propuesta)
-`SAL` salas · `COM` comedores · `REC` recámaras · `COL` colchones · `ROP` roperos/closets · `CEN` centros de entretenimiento · `DEC` decoración/hogar · `OFI` oficina
+`SAL` salas · `COM` comedores · `REC` recámaras · `COC` cocinas integrales · `COL` colchones · `ROP` roperos/closets · `CEN` centros de entretenimiento · `DEC` decoración/hogar · `OFI` oficina
 
 ## 5. Proceso de mantenimiento (altas, cambios y bajas)
 
@@ -87,7 +87,7 @@ fecha_alta: 2026-10-22
 3. **Alta:** crear archivo del producto con el siguiente código consecutivo. Guardar las fotos originales en `privado/fotos-originales/<codigo>/` y correr `npm run fotos` (marca de agua + optimización).
 4. **Cambio:** editar el archivo existente (precio, disponibilidad, fotos, etc.).
 5. **Baja:** preferir `disponible: false` (temporal) o eliminar archivo y fotos (definitivo).
-6. Revisar en local → subir cambios (commit + push) → Cloudflare Pages despliega automáticamente → verificar en el sitio publicado.
+6. Revisar en local → **esperar a que Rafael autorice la publicación** → subir cambios (commit + push) → Cloudflare Pages despliega automáticamente → verificar en el sitio publicado.
 7. Confirmar a Amanda con el enlace del producto.
 
 Reglas:
@@ -146,3 +146,4 @@ Reglas:
 | 2026-10-29 | Marca de agua con el logotipo (casa + MUEBLES GARCÍA, blanco con sofá ocre y sombra suave) en la esquina inferior derecha de todas las fotos de productos, de ~1/3 del ancho de la foto (`TAMAÑO_MARCA = 2`). Se aplica con `npm run fotos`; los originales sin marca quedan en `privado/fotos-originales/`. |
 | 2026-10-29 | Se permiten **fotos temporales** del catálogo del proveedor (recortadas y con marca de agua) mientras llegan las fotos propias; se anotan como temporales en la bitácora para reemplazarlas. |
 | 2026-10-29 | **Todas** las imágenes del sitio en vivo llevan marca de agua: también los dibujos provisionales de Comedores (ahora WebP) y las portadas de inicio, que el script recorta en vertical. |
+| 2026-10-29 | Nueva categoría **Cocinas integrales** (`/cocinas/`, prefijo `COC`), con 3 productos de ejemplo y dibujos provisionales con marca de agua. En el menú aparece como "Cocinas"; en celular el menú baja a su propio renglón. |

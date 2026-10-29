@@ -23,6 +23,7 @@ const PESO_MAXIMO = 200 * 1024; // 200 KB (regla del proyecto)
 const PORTADAS = [
   { categoria: 'recamaras', foto: 'rec-001/rec-001-1.webp', posicion: 0.8 },
   { categoria: 'comedores', foto: 'com-001/com-001-1.svg', posicion: 0.5 },
+  { categoria: 'cocinas', foto: 'coc-001/coc-001-1.svg', posicion: 0.5 },
 ];
 const DESTINO_PORTADAS = 'public/img/portadas';
 

@@ -8,3 +8,4 @@
 | 2026-10-29 | Cambio | REC-001 a REC-003 | Marca de agua con el logotipo en las fotos (`npm run fotos`). Originales sin marca guardados en `privado/fotos-originales/`. |
 | 2026-10-29 | Alta | REC-004 | Recámara Klarisa, $18,900. 5 piezas (cabecera con LED, cajonera, zapatera con espejo giratorio, 2 burós). Medidas tomadas del catálogo. Foto **temporal** recortada del catálogo del proveedor, con marca de agua. Reemplazar por foto propia. |
 | 2026-10-29 | Cambio | COM-001 a COM-003 | Dibujos provisionales convertidos a WebP con marca de agua (originales SVG en `privado/fotos-originales/`). Portadas de inicio generadas con marca en `public/img/portadas/`. |
+| 2026-10-29 | Alta (ejemplo) | COC-001 a COC-003 | Nueva categoría Cocinas integrales con 3 productos de ejemplo y dibujos provisionales (con marca de agua). Reemplazar por los reales. |
