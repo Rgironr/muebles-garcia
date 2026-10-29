@@ -7,7 +7,11 @@ export const NEGOCIO = {
   whatsappVisible: '55 9143 9289',
   direccion: 'Av. Jardines de Morelos 507, lote 10, ext. 470, Secc. Montes, Ecatepec, Edo. Méx.',
   referencias: 'Entre Nicolás Bravo y Playa Tijuana, frente a la iglesia.',
-  horario: '[POR DEFINIR] Horario de atención',
+  // Un renglón por grupo de días.
+  horario: [
+    'Lunes a viernes: 10 a.m. a 7 p.m.',
+    'Sábado y domingo: 10 a.m. a 4 p.m.',
+  ],
   zonaEnvios: '[POR DEFINIR] Zona de envíos a domicilio',
   // Ubicación de la tienda física: 19°36'11.9"N 98°59'27.8"W.
   ubicacion: { lat: 19.603306, lng: -98.991056 },

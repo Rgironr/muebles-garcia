@@ -101,7 +101,8 @@ Reglas:
 
 - [x] Número de WhatsApp para el sitio: 55 9143 9289 (en `src/config.ts`).
 - [x] Dirección (2026-10-29): Av. Jardines de Morelos 507, lote 10, ext. 470, Secc. Montes, Ecatepec; entre Nicolás Bravo y Playa Tijuana, frente a la iglesia. Coordenadas 19°36'11.9"N 98°59'27.8"W. En `src/config.ts`, con mapa en la página de inicio.
-- [ ] Horario, zona y costo de envíos.
+- [x] Horario (2026-10-29): lunes a viernes de 10 a.m. a 7 p.m.; sábado y domingo de 10 a.m. a 4 p.m. En `src/config.ts`.
+- [ ] Zona y costo de envíos.
 - [x] Logotipo elegido (2026-10-27): casa con sofá ocre y "PARA TU HOGAR". Redibujado en `src/components/LogoIcono.astro`. Falta un archivo maestro del logo completo (SVG) y fotos de la tienda.
 - [x] Se muestran precios; si `precio` está vacío dice "Consultar precio".
 - [ ] Lista inicial de productos con fotos (¿cuántos son aprox.?).

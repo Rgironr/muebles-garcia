@@ -55,7 +55,7 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
       <p>Ven a ver los muebles en persona y llévatelos o te los mandamos a tu casa.</p>
       <p class="visitanos-datos">{NEGOCIO.direccion}</p>
       <p class="visitanos-referencias">{NEGOCIO.referencias}</p>
-      <p class="visitanos-datos">{NEGOCIO.horario}</p>
+      <p class="visitanos-datos">{NEGOCIO.horario.map((h, i) => <>{i > 0 && <br />}{h}</>)}</p>
       <a class="boton boton-borde" href={enlaceComoLlegar()} target="_blank" rel="noopener">Cómo llegar</a>
     </div>
     <div class="mapa">

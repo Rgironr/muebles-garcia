@@ -68,7 +68,8 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
       </div>
       <div>
         <h2 class="pie-titulo">Visítanos</h2>
-        <p>{NEGOCIO.direccion}<br />{NEGOCIO.referencias}<br />{NEGOCIO.horario}</p>
+        <p>{NEGOCIO.direccion}<br />{NEGOCIO.referencias}</p>
+        <p>{NEGOCIO.horario.map((h, i) => <>{i > 0 && <br />}{h}</>)}</p>
         <p><a href={enlaceComoLlegar()} target="_blank" rel="noopener">Cómo llegar en Google Maps</a></p>
       </div>
       <div>
