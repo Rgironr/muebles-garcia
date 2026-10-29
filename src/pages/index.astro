@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Casa from '../components/Casa.astro';
 import ProductoTarjeta from '../components/ProductoTarjeta.astro';
 import IconoWhatsApp from '../components/IconoWhatsApp.astro';
-import { CATEGORIAS, enlaceWhatsApp } from '../config';
+import { NEGOCIO, CATEGORIAS, enlaceWhatsApp, mapaEmbed, enlaceComoLlegar } from '../config';
 
 const destacados = (await getCollection('productos', ({ data }) => data.destacado && data.disponible))
   .sort((a, b) => a.data.codigo.localeCompare(b.data.codigo));
@@ -47,6 +47,26 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
       <li><strong>Escríbenos por WhatsApp</strong> desde el producto. Te mandamos más fotos y resolvemos tus dudas.</li>
       <li><strong>Te lo llevamos</strong> a tu casa, o pasa a verlo a la tienda.</li>
     </ol>
+  </section>
+
+  <section class="contenedor bloque visitanos" id="ubicacion">
+    <div class="visitanos-texto">
+      <h2>Visita la tienda</h2>
+      <p>Ven a ver los muebles en persona y llévatelos o te los mandamos a tu casa.</p>
+      <p class="visitanos-datos">{NEGOCIO.direccion}</p>
+      <p class="visitanos-referencias">{NEGOCIO.referencias}</p>
+      <p class="visitanos-datos">{NEGOCIO.horario}</p>
+      <a class="boton boton-borde" href={enlaceComoLlegar()} target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="mapa">
+      <iframe
+        src={mapaEmbed()}
+        title={`Mapa de ubicación de ${NEGOCIO.nombre}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
   </section>
 
   <section class="contenedor bloque">
@@ -92,6 +112,16 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
   .pasos li { counter-increment: paso; padding-top: 1rem; border-top: 3px solid var(--ocre); max-width: 34ch; }
   .pasos li::before { content: counter(paso); display: block; font-family: var(--f-display); font-weight: 800; font-size: 2rem; line-height: 1; color: var(--ocre); margin-bottom: .5rem; }
   .pasos strong { font-family: var(--f-display); display: block; font-size: 1.125rem; color: var(--carbon); }
+
+  .visitanos { display: grid; gap: 1.5rem; align-items: center; }
+  @media (min-width: 52rem) { .visitanos { grid-template-columns: 5fr 7fr; gap: 3rem; } }
+  .visitanos-texto p { color: var(--texto-suave); max-width: 40ch; }
+  .visitanos-datos { color: var(--texto) !important; font-weight: 500; margin-bottom: .5rem; }
+  .visitanos-referencias { font-size: .9375rem; margin: 0 0 1rem; }
+  .visitanos-datos:last-of-type { margin-bottom: 1.5rem; }
+  .mapa { border-radius: 4px; overflow: hidden; border: 1px solid var(--linea); background: var(--piedra); aspect-ratio: 4 / 3; }
+  @media (min-width: 52rem) { .mapa { aspect-ratio: 16 / 10; } }
+  .mapa iframe { display: block; width: 100%; height: 100%; border: 0; }
 
   .mayoreo { background: var(--piedra); border-radius: 4px; padding: clamp(1.5rem, 4vw, 2.5rem); display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
   .mayoreo p { margin: 0; color: var(--texto-suave); max-width: 46ch; }

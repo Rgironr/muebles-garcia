@@ -5,9 +5,12 @@ export const NEGOCIO = {
   // Formato internacional sin espacios ni signos: 52 + 10 dígitos.
   whatsapp: '525591439289',
   whatsappVisible: '55 9143 9289',
-  direccion: '[POR DEFINIR] Dirección de la tienda',
+  direccion: 'Av. Jardines de Morelos 507, lote 10, ext. 470, Secc. Montes, Ecatepec, Edo. Méx.',
+  referencias: 'Entre Nicolás Bravo y Playa Tijuana, frente a la iglesia.',
   horario: '[POR DEFINIR] Horario de atención',
   zonaEnvios: '[POR DEFINIR] Zona de envíos a domicilio',
+  // Ubicación de la tienda física: 19°36'11.9"N 98°59'27.8"W.
+  ubicacion: { lat: 19.603306, lng: -98.991056 },
   // Mientras sea true, se muestra un aviso de que los productos son de ejemplo.
   productosDeEjemplo: true,
 };
@@ -34,6 +37,18 @@ export type Categoria = keyof typeof CATEGORIAS;
 
 export function enlaceWhatsApp(mensaje: string) {
   return `https://wa.me/${NEGOCIO.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+}
+
+// Mapa de Google para insertar en un iframe (no requiere clave de API).
+export function mapaEmbed() {
+  const { lat, lng } = NEGOCIO.ubicacion;
+  return `https://maps.google.com/maps?q=${lat},${lng}&z=17&hl=es&output=embed`;
+}
+
+// Abre Google Maps (app o web) con la ruta hasta la tienda.
+export function enlaceComoLlegar() {
+  const { lat, lng } = NEGOCIO.ubicacion;
+  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
 
 export function formatoPrecio(precio: number | null | undefined) {

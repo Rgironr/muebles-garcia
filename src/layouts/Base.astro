@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import LogoIcono from '../components/LogoIcono.astro';
 import IconoWhatsApp from '../components/IconoWhatsApp.astro';
-import { NEGOCIO, CATEGORIAS, enlaceWhatsApp } from '../config';
+import { NEGOCIO, CATEGORIAS, enlaceWhatsApp, enlaceComoLlegar } from '../config';
 
 interface Props { titulo?: string; descripcion?: string; imagen?: string }
 const { titulo, descripcion = 'Recámaras y comedores en Muebles García. Mira los modelos y pide el tuyo por WhatsApp. Envío a domicilio.', imagen } = Astro.props;
@@ -68,7 +68,8 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
       </div>
       <div>
         <h2 class="pie-titulo">Visítanos</h2>
-        <p>{NEGOCIO.direccion}<br />{NEGOCIO.horario}</p>
+        <p>{NEGOCIO.direccion}<br />{NEGOCIO.referencias}<br />{NEGOCIO.horario}</p>
+        <p><a href={enlaceComoLlegar()} target="_blank" rel="noopener">Cómo llegar en Google Maps</a></p>
       </div>
       <div>
         <h2 class="pie-titulo">Escríbenos</h2>
