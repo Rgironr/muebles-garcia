@@ -20,15 +20,15 @@ export const CATEGORIAS = {
     nombre: 'Recámaras',
     prefijo: 'REC',
     descripcion: 'Camas, cabeceras, burós y cómodas para descansar a gusto.',
-    portada: '/img/productos/rec-001/rec-001-1.webp',
-    // Qué parte de la foto se ve dentro de la casa de la portada (horizontal vertical).
-    portadaPosicion: '80% center',
+    // Foto de la casa en inicio: la genera npm run fotos (ver PORTADAS en scripts/marca-de-agua.mjs).
+    portada: '/img/portadas/recamaras.webp',
+    portadaPosicion: 'center',
   },
   comedores: {
     nombre: 'Comedores',
     prefijo: 'COM',
     descripcion: 'Mesas y sillas para reunir a toda la familia.',
-    portada: '/img/productos/com-001/com-001-1.svg',
+    portada: '/img/portadas/comedores.webp',
     portadaPosicion: 'center',
   },
 } as const;

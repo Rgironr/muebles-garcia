@@ -12,10 +12,19 @@ import sharp from 'sharp';
 
 const ORIGENES = 'privado/fotos-originales';
 const DESTINO = 'public/img/productos';
-const EXTENSIONES = new Set(['.jpg', '.jpeg', '.png', '.webp', '.heic', '.avif', '.tif', '.tiff']);
+const EXTENSIONES = new Set(['.jpg', '.jpeg', '.png', '.webp', '.heic', '.avif', '.tif', '.tiff', '.svg']);
 const ANCHO_MAXIMO = 1600;
 const TAMAÑO_MARCA = 2; // 1 = logo de ~17 % del ancho de la foto; 2 = el doble
 const PESO_MAXIMO = 200 * 1024; // 200 KB (regla del proyecto)
+
+// Fotos de las casas de la página de inicio (una por categoría), recortadas en vertical (4:5)
+// para que la marca quede dentro de la casa. posicion: 0 = lado izquierdo de la foto, 1 = derecho.
+// Si se cambia la foto de portada, cambiar aquí y correr npm run fotos.
+const PORTADAS = [
+  { categoria: 'recamaras', foto: 'rec-001/rec-001-1.webp', posicion: 0.8 },
+  { categoria: 'comedores', foto: 'com-001/com-001-1.svg', posicion: 0.5 },
+];
+const DESTINO_PORTADAS = 'public/img/portadas';
 
 const OCRE = '#B07A3A';
 const fuentes = createRequire(import.meta.url).resolve('@fontsource/red-hat-display/package.json').replace(/package\.json$/, 'files/');
@@ -93,8 +102,22 @@ async function marcaDeAgua(anchoFoto) {
   return { data, ancho, alto, distancia: Math.round(32 * escala) - margen };
 }
 
+// Los SVG se dibujan a buena resolución antes de reducirlos.
+const abrir = (origen) => sharp(origen, origen.endsWith('.svg') ? { density: 300 } : {}).rotate();
+
+async function guardarWebp(imagen, destino) {
+  // Baja la calidad poco a poco hasta quedar en el peso máximo.
+  let calidad = 82, salida;
+  do {
+    salida = await sharp(imagen).webp({ quality: calidad }).toBuffer();
+    calidad -= 6;
+  } while (salida.length > PESO_MAXIMO && calidad >= 40);
+  await writeFile(destino, salida);
+  return { kb: Math.round(salida.length / 1024), calidad: calidad + 6 };
+}
+
 async function procesar(origen, destino) {
-  const base = sharp(origen).rotate().resize({ width: ANCHO_MAXIMO, withoutEnlargement: true });
+  const base = abrir(origen).resize({ width: ANCHO_MAXIMO, withoutEnlargement: true });
   const { data: foto, info } = await base.toBuffer({ resolveWithObject: true });
 
   // Las tarjetas del catálogo recortan al centro en 4:3. Si la foto es más ancha o más alta,
@@ -111,14 +134,24 @@ async function procesar(origen, destino) {
     top: Math.round(abajo - marca.alto - marca.distancia),
   }]).toBuffer();
 
-  // Baja la calidad poco a poco hasta quedar en el peso máximo.
-  let calidad = 82, salida;
-  do {
-    salida = await sharp(conMarca).webp({ quality: calidad }).toBuffer();
-    calidad -= 6;
-  } while (salida.length > PESO_MAXIMO && calidad >= 40);
-  await writeFile(destino, salida);
-  return { kb: Math.round(salida.length / 1024), calidad: calidad + 6, ...info };
+  return { ...(await guardarWebp(conMarca, destino)), ...info };
+}
+
+async function portada({ categoria, foto, posicion }) {
+  const { data, info } = await abrir(join(ORIGENES, foto)).resize({ height: 900 }).toBuffer({ resolveWithObject: true });
+  const ancho = Math.min(info.width, Math.round(info.height * 4 / 5));
+  const recorte = await sharp(data)
+    .extract({ left: Math.round((info.width - ancho) * posicion), top: 0, width: ancho, height: info.height })
+    .toBuffer();
+  const marca = await marcaDeAgua(ancho);
+  const conMarca = await sharp(recorte).composite([{
+    input: marca.data,
+    left: ancho - marca.ancho - marca.distancia,
+    top: info.height - marca.alto - marca.distancia,
+  }]).toBuffer();
+  const destino = join(DESTINO_PORTADAS, `${categoria}.webp`);
+  const r = await guardarWebp(conMarca, destino);
+  console.log(`✓ ${destino}  ${ancho}×${info.height}  ${r.kb} KB (portada)`);
 }
 
 const codigos = (await readdir(ORIGENES, { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name);
@@ -134,4 +167,6 @@ for (const codigo of codigos.sort()) {
     total++;
   }
 }
-console.log(total ? `\n${total} foto(s) con marca de agua.` : `No hay fotos en ${ORIGENES}/<codigo>/.`);
+await mkdir(DESTINO_PORTADAS, { recursive: true });
+for (const p of PORTADAS) await portada(p);
+console.log(total ? `\n${total} foto(s) y ${PORTADAS.length} portada(s) con marca de agua.` : `No hay fotos en ${ORIGENES}/<codigo>/.`);

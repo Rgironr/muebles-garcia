@@ -93,7 +93,7 @@ fecha_alta: 2026-10-22
 Reglas:
 - Nunca publicar precios de mayoreo.
 - Las fotos deben ser propias de la mueblería (no de catálogos de proveedores sin permiso).
-- Toda foto publicada lleva el logotipo como marca de agua (esquina inferior derecha). Nunca subir a `public/` una foto sin marca. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa.
+- Toda foto publicada lleva el logotipo como marca de agua (esquina inferior derecha). Nunca subir a `public/` una foto sin marca. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa. Las fotos de las casas de inicio (`public/img/portadas/`) también las genera el script (lista `PORTADAS`). Ninguna imagen de producto se publica sin pasar por `npm run fotos`.
 - El repositorio es público: cotizaciones, contratos y datos privados van en `privado/` (ignorado por Git), nunca en archivos versionados.
 - Un commit por solicitud de mantenimiento, con mensaje del tipo `alta: SAL-012 Sala Milán`.
 
@@ -142,5 +142,6 @@ Reglas:
 | 2026-10-27 | Sitio en **Astro 5**. Primeras secciones: **Recámaras** y **Comedores**. Se muestran precios. WhatsApp 55 9143 9289. Productos de ejemplo con fotos provisionales hasta tener las reales (`productosDeEjemplo` en `src/config.ts`). |
 | 2026-10-27 | Repositorio público en GitHub y sitio publicado en Cloudflare Pages: https://muebles-garcia.pages.dev. La cotización se movió a `privado/` (fuera de Git). |
 | 2026-10-29 | Mapa de la tienda con Google Maps insertado (iframe sin clave de API, gratuito) en la sección "Visita la tienda" de inicio, más enlace "Cómo llegar" en el pie. Coordenadas en `NEGOCIO.ubicacion`. |
-| 2026-10-29 | Marca de agua con el logotipo (casa + MUEBLES GARCÍA, blanco con sofá ocre y sombra suave) en la esquina inferior derecha de todas las fotos de productos, de ~1/3 del ancho de la foto (`TAMAÑO_MARCA = 2`). Se aplica con `npm run fotos`; los originales sin marca quedan en `privado/fotos-originales/`. Los dibujos SVG provisionales no llevan marca. |
+| 2026-10-29 | Marca de agua con el logotipo (casa + MUEBLES GARCÍA, blanco con sofá ocre y sombra suave) en la esquina inferior derecha de todas las fotos de productos, de ~1/3 del ancho de la foto (`TAMAÑO_MARCA = 2`). Se aplica con `npm run fotos`; los originales sin marca quedan en `privado/fotos-originales/`. |
 | 2026-10-29 | Se permiten **fotos temporales** del catálogo del proveedor (recortadas y con marca de agua) mientras llegan las fotos propias; se anotan como temporales en la bitácora para reemplazarlas. |
+| 2026-10-29 | **Todas** las imágenes del sitio en vivo llevan marca de agua: también los dibujos provisionales de Comedores (ahora WebP) y las portadas de inicio, que el script recorta en vertical. |
