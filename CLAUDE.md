@@ -46,7 +46,7 @@ Prioridad: **bajo costo, rápido, fácil de mantener para Rafael.**
 | Tipo de sitio | Sitio estático (catálogo) | Sin servidor ni base de datos que mantener; barato y rápido |
 | Generador | **Astro 5** — ✅ confirmado | Genera una página por producto a partir de archivos de datos (`npm run dev` / `npm run build`) |
 | Datos de productos | Un `.md` por producto en `src/content/productos/` (esquema en `src/content.config.ts`) | Altas/cambios/bajas = agregar, editar o borrar un archivo |
-| Imágenes | `public/img/productos/<codigo-en-minúsculas>/` optimizadas (WebP, ≤ 200 KB) | Carga rápida en celular |
+| Imágenes | Originales en `privado/fotos-originales/<codigo>/` (fuera de Git). `npm run fotos` (`scripts/marca-de-agua.mjs`) les pone el logotipo como marca de agua y las guarda optimizadas (WebP, ≤ 200 KB) en `public/img/productos/<codigo-en-minúsculas>/` | Carga rápida en celular; las fotos publicadas siempre llevan la marca |
 | Hospedaje | **Cloudflare Pages (plan gratuito)** — ✅ publicado en https://muebles-garcia.pages.dev (preset Astro, build `npm run build`, salida `dist`) | Despliegue automático al subir cambios a GitHub; CDN global, HTTPS incluido |
 | Control de versiones | Git + GitHub: https://github.com/Rgironr/muebles-garcia (público, rama `main`) | Historial de cambios y respaldo |
 | Dominio | Por definir (ej. `mueblesgarcia.com.mx`). Mientras tanto: subdominio gratuito `*.pages.dev` | Costo anual a cargo de Amanda; DNS administrable desde Cloudflare |
@@ -84,7 +84,7 @@ fecha_alta: 2026-10-22
 
 1. **Amanda envía** por WhatsApp: fotos del producto + nombre, precio, medidas, material, colores.
 2. **Rafael registra** la solicitud en `mantenimiento/bitacora.md` (fecha, tipo, código, detalle).
-3. **Alta:** crear archivo del producto con el siguiente código consecutivo, optimizar y subir fotos.
+3. **Alta:** crear archivo del producto con el siguiente código consecutivo. Guardar las fotos originales en `privado/fotos-originales/<codigo>/` y correr `npm run fotos` (marca de agua + optimización).
 4. **Cambio:** editar el archivo existente (precio, disponibilidad, fotos, etc.).
 5. **Baja:** preferir `disponible: false` (temporal) o eliminar archivo y fotos (definitivo).
 6. Revisar en local → subir cambios (commit + push) → Cloudflare Pages despliega automáticamente → verificar en el sitio publicado.
@@ -93,13 +93,15 @@ fecha_alta: 2026-10-22
 Reglas:
 - Nunca publicar precios de mayoreo.
 - Las fotos deben ser propias de la mueblería (no de catálogos de proveedores sin permiso).
+- Toda foto publicada lleva el logotipo como marca de agua (esquina inferior derecha). Nunca subir a `public/` una foto sin marca. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa.
 - El repositorio es público: cotizaciones, contratos y datos privados van en `privado/` (ignorado por Git), nunca en archivos versionados.
 - Un commit por solicitud de mantenimiento, con mensaje del tipo `alta: SAL-012 Sala Milán`.
 
 ## 6. Pendientes / información por obtener de Amanda
 
 - [x] Número de WhatsApp para el sitio: 55 9143 9289 (en `src/config.ts`).
-- [ ] Dirección, horario, zona y costo de envíos.
+- [x] Dirección (2026-10-29): Av. Jardines de Morelos 507, lote 10, ext. 470, Secc. Montes, Ecatepec; entre Nicolás Bravo y Playa Tijuana, frente a la iglesia. Coordenadas 19°36'11.9"N 98°59'27.8"W. En `src/config.ts`, con mapa en la página de inicio.
+- [ ] Horario, zona y costo de envíos.
 - [x] Logotipo elegido (2026-10-27): casa con sofá ocre y "PARA TU HOGAR". Redibujado en `src/components/LogoIcono.astro`. Falta un archivo maestro del logo completo (SVG) y fotos de la tienda.
 - [x] Se muestran precios; si `precio` está vacío dice "Consultar precio".
 - [ ] Lista inicial de productos con fotos (¿cuántos son aprox.?).
@@ -139,3 +141,6 @@ Reglas:
 | 2026-10-27 | Se elige el logotipo 1 (casa con sofá). Colores del sitio: carbón `#24282C`, ocre `#B07A3A`, ocre claro `#EBD9BD`, piedra `#ECEAE6`. Tipografía Red Hat Display / Red Hat Text. |
 | 2026-10-27 | Sitio en **Astro 5**. Primeras secciones: **Recámaras** y **Comedores**. Se muestran precios. WhatsApp 55 9143 9289. Productos de ejemplo con fotos provisionales hasta tener las reales (`productosDeEjemplo` en `src/config.ts`). |
 | 2026-10-27 | Repositorio público en GitHub y sitio publicado en Cloudflare Pages: https://muebles-garcia.pages.dev. La cotización se movió a `privado/` (fuera de Git). |
+| 2026-10-29 | Mapa de la tienda con Google Maps insertado (iframe sin clave de API, gratuito) en la sección "Visita la tienda" de inicio, más enlace "Cómo llegar" en el pie. Coordenadas en `NEGOCIO.ubicacion`. |
+| 2026-10-29 | Marca de agua con el logotipo (casa + MUEBLES GARCÍA, blanco con sofá ocre y sombra suave) en la esquina inferior derecha de todas las fotos de productos, de ~1/3 del ancho de la foto (`TAMAÑO_MARCA = 2`). Se aplica con `npm run fotos`; los originales sin marca quedan en `privado/fotos-originales/`. Los dibujos SVG provisionales no llevan marca. |
+| 2026-10-29 | Se permiten **fotos temporales** del catálogo del proveedor (recortadas y con marca de agua) mientras llegan las fotos propias; se anotan como temporales en la bitácora para reemplazarlas. |
