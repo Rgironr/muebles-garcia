@@ -82,7 +82,7 @@ const mensaje = p.disponible
   .ficha { display: grid; gap: 2rem; }
   @media (min-width: 56rem) { .ficha { grid-template-columns: 7fr 5fr; gap: 3.5rem; align-items: start; } }
 
-  .galeria-principal { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--piedra); border-radius: 4px; }
+  .galeria-principal { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--piedra); border-radius: 4px; }
   .miniaturas { list-style: none; padding: 0; margin: .75rem 0 0; display: flex; gap: .75rem; }
   .miniaturas button { padding: 0; border: 2px solid transparent; border-radius: 4px; background: var(--piedra); cursor: pointer; width: 5.5rem; overflow: hidden; display: block; }
   .miniaturas button[aria-pressed='true'] { border-color: var(--carbon); }

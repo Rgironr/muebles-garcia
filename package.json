@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "fotos": "node scripts/marca-de-agua.mjs"
   },
   "dependencies": {
     "astro": "^5.18.2"
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@fontsource/red-hat-display": "^5.3.0",
+    "sharp": "^0.34.5"
   }
 }
