@@ -1,4 +1,5 @@
-// Pone el logotipo de Muebles García como marca de agua en las fotos de productos.
+// Pone el logotipo de Muebles García como marca de agua en las fotos de productos
+// (los dibujos .svg de ejemplo se publican sin marca).
 //
 // Uso:  npm run fotos
 //
@@ -103,6 +104,10 @@ async function marcaDeAgua(anchoFoto) {
   return { data, ancho, alto, distancia: Math.round(32 * escala) - margen };
 }
 
+// Los dibujos .svg son imágenes de ejemplo (provisionales): se convierten a WebP pero no llevan marca.
+// Toda foto real (jpg, png, webp…) sí la lleva.
+const esEjemplo = (origen) => origen.toLowerCase().endsWith('.svg');
+
 // Los SVG se dibujan a buena resolución antes de reducirlos.
 const abrir = (origen) => sharp(origen, origen.endsWith('.svg') ? { density: 300 } : {}).rotate();
 
@@ -120,6 +125,7 @@ async function guardarWebp(imagen, destino) {
 async function procesar(origen, destino) {
   const base = abrir(origen).resize({ width: ANCHO_MAXIMO, withoutEnlargement: true });
   const { data: foto, info } = await base.toBuffer({ resolveWithObject: true });
+  if (esEjemplo(origen)) return { ...(await guardarWebp(foto, destino)), ...info, marca: false };
 
   // Las tarjetas del catálogo recortan al centro en 4:3. Si la foto es más ancha o más alta,
   // la marca va en la esquina de esa zona central para que nunca quede cortada.
@@ -135,7 +141,7 @@ async function procesar(origen, destino) {
     top: Math.round(abajo - marca.alto - marca.distancia),
   }]).toBuffer();
 
-  return { ...(await guardarWebp(conMarca, destino)), ...info };
+  return { ...(await guardarWebp(conMarca, destino)), ...info, marca: true };
 }
 
 async function portada({ categoria, foto, posicion }) {
@@ -144,13 +150,18 @@ async function portada({ categoria, foto, posicion }) {
   const recorte = await sharp(data)
     .extract({ left: Math.round((info.width - ancho) * posicion), top: 0, width: ancho, height: info.height })
     .toBuffer();
+  const destino = join(DESTINO_PORTADAS, `${categoria}.webp`);
+  if (esEjemplo(foto)) {
+    const r = await guardarWebp(recorte, destino);
+    console.log(`✓ ${destino}  ${ancho}×${info.height}  ${r.kb} KB (portada, ejemplo sin marca)`);
+    return;
+  }
   const marca = await marcaDeAgua(ancho);
   const conMarca = await sharp(recorte).composite([{
     input: marca.data,
     left: ancho - marca.ancho - marca.distancia,
     top: info.height - marca.alto - marca.distancia,
   }]).toBuffer();
-  const destino = join(DESTINO_PORTADAS, `${categoria}.webp`);
   const r = await guardarWebp(conMarca, destino);
   console.log(`✓ ${destino}  ${ancho}×${info.height}  ${r.kb} KB (portada)`);
 }
@@ -164,10 +175,10 @@ for (const codigo of codigos.sort()) {
     if (!EXTENSIONES.has(ext.toLowerCase())) continue;
     const destino = join(DESTINO, codigo, `${name.toLowerCase()}.webp`);
     const r = await procesar(join(ORIGENES, codigo, archivo), destino);
-    console.log(`✓ ${destino}  ${r.width}×${r.height}  ${r.kb} KB (calidad ${r.calidad})`);
+    console.log(`✓ ${destino}  ${r.width}×${r.height}  ${r.kb} KB (calidad ${r.calidad})${r.marca ? '' : ' — ejemplo sin marca'}`);
     total++;
   }
 }
 await mkdir(DESTINO_PORTADAS, { recursive: true });
 for (const p of PORTADAS) await portada(p);
-console.log(total ? `\n${total} foto(s) y ${PORTADAS.length} portada(s) con marca de agua.` : `No hay fotos en ${ORIGENES}/<codigo>/.`);
+console.log(total ? `\n${total} imagen(es) y ${PORTADAS.length} portada(s) procesadas.` : `No hay fotos en ${ORIGENES}/<codigo>/.`);

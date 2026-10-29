@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import ProductoTarjeta from '../../components/ProductoTarjeta.astro';
 import IconoWhatsApp from '../../components/IconoWhatsApp.astro';
 import { CATEGORIAS, enlaceWhatsApp, type Categoria } from '../../config';
+import { urlImagen } from '../../imagenes';
 
 export function getStaticPaths() {
   return Object.keys(CATEGORIAS).map((categoria) => ({ params: { categoria } }));
@@ -15,7 +16,7 @@ const info = CATEGORIAS[categoria];
 const productos = (await getCollection('productos', ({ data }) => data.categoria === categoria))
   .sort((a, b) => Number(b.data.disponible) - Number(a.data.disponible) || a.data.codigo.localeCompare(b.data.codigo));
 ---
-<Base titulo={info.nombre} descripcion={`${info.nombre} en Muebles García. ${info.descripcion} Pide por WhatsApp.`} imagen={info.portada}>
+<Base titulo={info.nombre} descripcion={`${info.nombre} en Muebles García. ${info.descripcion} Pide por WhatsApp.`} imagen={urlImagen(info.portada)}>
   <div class="contenedor">
     <header class="cabecera">
       <h1>{info.nombre}</h1>

@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import IconoWhatsApp from '../../components/IconoWhatsApp.astro';
 import { CATEGORIAS, enlaceWhatsApp, formatoPrecio } from '../../config';
+import { fotoProducto } from '../../imagenes';
 
 export async function getStaticPaths() {
   const productos = await getCollection('productos');
@@ -15,8 +16,7 @@ export async function getStaticPaths() {
 const { producto } = Astro.props as { producto: CollectionEntry<'productos'> };
 const p = producto.data;
 const categoria = CATEGORIAS[p.categoria];
-const carpeta = `/img/productos/${p.codigo.toLowerCase()}`;
-const fotos = p.fotos.map((f) => `${carpeta}/${f}`);
+const fotos = p.fotos.map((f) => fotoProducto(p.codigo, f));
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const mensaje = p.disponible
   ? `Hola, me interesa ${p.nombre} (${p.codigo}). ¿Me pueden dar más información?\n${url}`

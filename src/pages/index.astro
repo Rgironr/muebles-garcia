@@ -5,6 +5,7 @@ import Casa from '../components/Casa.astro';
 import ProductoTarjeta from '../components/ProductoTarjeta.astro';
 import IconoWhatsApp from '../components/IconoWhatsApp.astro';
 import { NEGOCIO, CATEGORIAS, enlaceWhatsApp, mapaEmbed, enlaceComoLlegar } from '../config';
+import { urlImagen } from '../imagenes';
 
 const destacados = (await getCollection('productos', ({ data }) => data.destacado && data.disponible))
   .sort((a, b) => a.data.codigo.localeCompare(b.data.codigo));
@@ -23,7 +24,7 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
         {Object.entries(CATEGORIAS).map(([slug, c], i) => (
           <li style={`--i:${i}`}>
             <a href={`/${slug}/`} class="puerta">
-              <Casa src={c.portada} posicion={c.portadaPosicion} />
+              <Casa src={urlImagen(c.portada)} posicion={c.portadaPosicion} />
               <span class="puerta-nombre">{c.nombre}</span>
               <span class="puerta-desc">{c.descripcion}</span>
             </a>

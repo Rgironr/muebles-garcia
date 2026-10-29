@@ -1,14 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatoPrecio } from '../config';
+import { fotoProducto } from '../imagenes';
 interface Props { producto: CollectionEntry<'productos'> }
 const { producto } = Astro.props;
 const p = producto.data;
-const carpeta = `/img/productos/${p.codigo.toLowerCase()}`;
 ---
 <a class="tarjeta" href={`/${p.categoria}/${p.codigo.toLowerCase()}/`}>
   <div class="tarjeta-foto">
-    <img src={`${carpeta}/${p.fotos[0]}`} alt={p.nombre} loading="lazy" width="800" height="600" />
+    <img src={fotoProducto(p.codigo, p.fotos[0])} alt={p.nombre} loading="lazy" width="800" height="600" />
     {!p.disponible && <span class="agotado">Agotado</span>}
   </div>
   <h3>{p.nombre}</h3>

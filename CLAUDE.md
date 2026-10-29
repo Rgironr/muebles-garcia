@@ -93,7 +93,7 @@ fecha_alta: 2026-10-22
 Reglas:
 - Nunca publicar precios de mayoreo.
 - Las fotos deben ser propias de la mueblería (no de catálogos de proveedores sin permiso).
-- Toda foto publicada lleva el logotipo como marca de agua (esquina inferior derecha). Nunca subir a `public/` una foto sin marca. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa. Las fotos de las casas de inicio (`public/img/portadas/`) también las genera el script (lista `PORTADAS`). Ninguna imagen de producto se publica sin pasar por `npm run fotos`.
+- Toda foto real publicada lleva el logotipo como marca de agua (esquina inferior derecha). Los dibujos de ejemplo (originales `.svg`) se publican sin marca. Nunca subir a `public/` una foto sin pasar por `npm run fotos`. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa. Las fotos de las casas de inicio (`public/img/portadas/`) también las genera el script (lista `PORTADAS`). Ninguna imagen de producto se publica sin pasar por `npm run fotos`.
 - El repositorio es público: cotizaciones, contratos y datos privados van en `privado/` (ignorado por Git), nunca en archivos versionados.
 - Un commit por solicitud de mantenimiento, con mensaje del tipo `alta: SAL-012 Sala Milán`.
 
@@ -148,3 +148,4 @@ Reglas:
 | 2026-10-29 | **Todas** las imágenes del sitio en vivo llevan marca de agua: también los dibujos provisionales de Comedores (ahora WebP) y las portadas de inicio, que el script recorta en vertical. |
 | 2026-10-29 | Nueva categoría **Cocinas integrales** (`/cocinas/`, prefijo `COC`), con 3 productos de ejemplo y dibujos provisionales con marca de agua. En el menú aparece como "Cocinas"; en celular el menú baja a su propio renglón. |
 | 2026-10-29 | Rediseño de inicio: portada con degradado cálido "luz de tarde" (marfil → ocre, con resplandor detrás de las casas) y las casas de categorías sobre una línea de piso común. Banda oscura de mayoreo con luz ocre y banda piedra de "Visita la tienda" al final. |
+| 2026-10-29 | Los dibujos de ejemplo (`.svg`) van **sin** marca de agua; todas las fotos reales sí la llevan. Las direcciones de las imágenes llevan una huella del contenido (`?v=…`, `src/imagenes.ts`) para que los navegadores bajen la foto nueva en cuanto cambia. |
