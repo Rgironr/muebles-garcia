@@ -147,3 +147,4 @@ Reglas:
 | 2026-10-29 | Se permiten **fotos temporales** del catálogo del proveedor (recortadas y con marca de agua) mientras llegan las fotos propias; se anotan como temporales en la bitácora para reemplazarlas. |
 | 2026-10-29 | **Todas** las imágenes del sitio en vivo llevan marca de agua: también los dibujos provisionales de Comedores (ahora WebP) y las portadas de inicio, que el script recorta en vertical. |
 | 2026-10-29 | Nueva categoría **Cocinas integrales** (`/cocinas/`, prefijo `COC`), con 3 productos de ejemplo y dibujos provisionales con marca de agua. En el menú aparece como "Cocinas"; en celular el menú baja a su propio renglón. |
+| 2026-10-29 | Rediseño de inicio: portada con degradado cálido "luz de tarde" (marfil → ocre, con resplandor detrás de las casas) y las casas de categorías sobre una línea de piso común. Banda oscura de mayoreo con luz ocre y banda piedra de "Visita la tienda" al final. |

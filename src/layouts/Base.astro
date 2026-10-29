@@ -106,7 +106,10 @@ const imagenOg = imagen ? new URL(imagen, Astro.site).href : undefined;
   nav a:hover { background: var(--piedra); }
   nav a[aria-current='page'] { background: var(--carbon); color: #fff; }
 
-  .pie { background: var(--carbon); color: #E4E2DE; margin-top: 5rem; padding-block: 3rem; }
+  .pie { background: var(--carbon); color: #E4E2DE; padding-block: 3rem; }
+  /* Separación antes del pie, salvo cuando la página termina en una banda de color. */
+  main { padding-bottom: 5rem; }
+  main:has(> .visitanos-fondo:last-child) { padding-bottom: 0; }
   .pie p { margin: 0 0 1rem; }
   .pie-rejilla { display: grid; gap: 2rem; }
   @media (min-width: 48rem) { .pie-rejilla { grid-template-columns: 1.2fr 1fr 1fr; } }
