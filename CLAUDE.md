@@ -153,3 +153,4 @@ Reglas:
 | 2026-11-04 | Se quita de inicio la sección "¿Tienes una mueblería?" (mayoreo), a petición de Rafael. El pie conserva "Venta al público y mayoreo". |
 | 2026-11-04 | Por ahora las altas se publican solo con nombre y precio; `descripcion` pasa a ser opcional. |
 | 2026-11-04 | La ficha de producto puede mostrar un video (campo `video`), debajo de las fotos: no se descarga hasta darle reproducir. Los videos se publican con marca de agua y sin audio. |
+| 2026-11-04 | Se quita el aviso "Sitio en construcción" (`productosDeEjemplo: false`). |

@@ -16,7 +16,7 @@ export const NEGOCIO = {
   // Ubicación de la tienda física: 19°36'11.9"N 98°59'27.8"W.
   ubicacion: { lat: 19.603306, lng: -98.991056 },
   // Mientras sea true, se muestra un aviso de que los productos son de ejemplo.
-  productosDeEjemplo: true,
+  productosDeEjemplo: false,
 };
 
 export const CATEGORIAS = {
