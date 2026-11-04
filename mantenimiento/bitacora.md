@@ -12,3 +12,4 @@
 | 2026-10-29 | Cambio | COM-001 a COM-003, COC-001 a COC-003 | Dibujos de ejemplo sin marca de agua. Las fotos llevan `?v=<huella>` en su dirección para que ningún navegador muestre versiones viejas (sin marca). |
 | 2026-11-04 | Baja | REC-003 | Recámara Lucía king size eliminada del sitio. Foto original guardada en `privado/fotos-bajas/rec-003/`. El código REC-003 no se reutiliza. |
 | 2026-11-04 | Alta | REC-005 | Recámara Audio, $22,950. Foto real de la tienda con marca de agua. Solo nombre y precio, sin descripción (indicación de Rafael). |
+| 2026-11-04 | Cambio | REC-004 | Se quitan descripción y medidas: solo nombre y precio (indicación de Rafael). La foto sigue siendo temporal. |
