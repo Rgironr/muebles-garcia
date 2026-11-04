@@ -20,3 +20,4 @@
 | 2026-11-04 | Alta | REC-008 | Recámara Stefany, $23,300. Foto real de la tienda con marca de agua. Solo nombre y precio. |
 | 2026-11-04 | Cambio | REC-001, REC-002, COM-001 a COM-003, COC-001 a COC-003 | Se quitan los precios de ejemplo ("Consultar precio") y la nota "Producto de ejemplo". Nombres, descripciones, medidas y materiales siguen siendo de ejemplo. |
 | 2026-11-04 | Cambio | REC-001, REC-002, COM-001 a COM-003, COC-001 a COC-003 | Se quitan descripción, medidas, material y colores inventados: solo nombre y "Consultar precio". |
+| 2026-11-04 | Cambio | REC-005, REC-006, REC-008 | Pasan a "Lo más pedido" en inicio, en lugar de COM-001, COM-003 y REC-001 (elegidas por Claude a petición de Rafael). |
