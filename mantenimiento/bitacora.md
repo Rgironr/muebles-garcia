@@ -11,3 +11,4 @@
 | 2026-10-29 | Alta (ejemplo) | COC-001 a COC-003 | Nueva categoría Cocinas integrales con 3 productos de ejemplo y dibujos provisionales (con marca de agua). Reemplazar por los reales. |
 | 2026-10-29 | Cambio | COM-001 a COM-003, COC-001 a COC-003 | Dibujos de ejemplo sin marca de agua. Las fotos llevan `?v=<huella>` en su dirección para que ningún navegador muestre versiones viejas (sin marca). |
 | 2026-11-04 | Baja | REC-003 | Recámara Lucía king size eliminada del sitio. Foto original guardada en `privado/fotos-bajas/rec-003/`. El código REC-003 no se reutiliza. |
+| 2026-11-04 | Alta | REC-005 | Recámara Audio, $22,950. Foto real de la tienda con marca de agua. Descripción redactada a partir de la foto: falta confirmar piezas incluidas, medidas, material y color. |
