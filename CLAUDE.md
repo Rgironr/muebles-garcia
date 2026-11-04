@@ -74,6 +74,7 @@ descripcion: >          # Opcional. Por ahora las altas van solo con nombre y pr
 fotos:
   - sal-001-1.webp
   - sal-001-2.webp
+video: sal-001-1.mp4       # Opcional. Lo genera npm run fotos, con marca y sin audio
 fecha_alta: 2026-10-22
 ```
 
@@ -93,7 +94,7 @@ fecha_alta: 2026-10-22
 Reglas:
 - Nunca publicar precios de mayoreo.
 - Las fotos deben ser propias de la mueblería (no de catálogos de proveedores sin permiso).
-- Toda foto real publicada lleva el logotipo como marca de agua (esquina inferior derecha). Los dibujos de ejemplo (originales `.svg`) se publican sin marca. Nunca subir a `public/` una foto sin pasar por `npm run fotos`. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa. Las fotos de las casas de inicio (`public/img/portadas/`) también las genera el script (lista `PORTADAS`). Ninguna imagen de producto se publica sin pasar por `npm run fotos`.
+- Toda foto real publicada lleva el logotipo como marca de agua (esquina inferior derecha). Los dibujos de ejemplo (originales `.svg`) se publican sin marca. Nunca subir a `public/` una foto sin pasar por `npm run fotos`. Si la foto no es 4:3, el script pone la marca dentro de la zona central 4:3 (la que se ve en las tarjetas); la ficha del producto muestra la foto completa. Las fotos de las casas de inicio (`public/img/portadas/`) también las genera el script (lista `PORTADAS`). Ninguna imagen de producto se publica sin pasar por `npm run fotos`. Los videos (`.mp4`, `.mov`) van en la misma carpeta de originales: el script les pone la marca y les quita el audio (requiere GStreamer).
 - El repositorio es público: cotizaciones, contratos y datos privados van en `privado/` (ignorado por Git), nunca en archivos versionados.
 - Un commit por solicitud de mantenimiento, con mensaje del tipo `alta: SAL-012 Sala Milán`.
 
@@ -151,3 +152,4 @@ Reglas:
 | 2026-10-29 | Los dibujos de ejemplo (`.svg`) van **sin** marca de agua; todas las fotos reales sí la llevan. Las direcciones de las imágenes llevan una huella del contenido (`?v=…`, `src/imagenes.ts`) para que los navegadores bajen la foto nueva en cuanto cambia. |
 | 2026-11-04 | Se quita de inicio la sección "¿Tienes una mueblería?" (mayoreo), a petición de Rafael. El pie conserva "Venta al público y mayoreo". |
 | 2026-11-04 | Por ahora las altas se publican solo con nombre y precio; `descripcion` pasa a ser opcional. |
+| 2026-11-04 | La ficha de producto puede mostrar un video (campo `video`), debajo de las fotos: no se descarga hasta darle reproducir. Los videos se publican con marca de agua y sin audio. |

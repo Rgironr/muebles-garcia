@@ -1,20 +1,25 @@
-// Pone el logotipo de Muebles García como marca de agua en las fotos de productos
+// Pone el logotipo de Muebles García como marca de agua en las fotos y videos de productos
 // (los dibujos .svg de ejemplo se publican sin marca).
 //
 // Uso:  npm run fotos
 //
-// Lee las fotos originales (sin marca) de privado/fotos-originales/<codigo>/
+// Lee las fotos y videos originales (sin marca) de privado/fotos-originales/<codigo>/
 // y escribe la versión con marca, optimizada en WebP, en public/img/productos/<codigo>/.
 // Los originales viven en privado/ (fuera de Git) para que nadie descargue fotos sin marca.
-import { readdir, mkdir, writeFile } from 'node:fs/promises';
+import { readdir, mkdir, writeFile, readFile, stat, mkdtemp, rm } from 'node:fs/promises';
 import { join, parse } from 'node:path';
+import { tmpdir } from 'node:os';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { createRequire } from 'node:module';
 import sharp from 'sharp';
 
 const ORIGENES = 'privado/fotos-originales';
 const DESTINO = 'public/img/productos';
 const EXTENSIONES = new Set(['.jpg', '.jpeg', '.png', '.webp', '.heic', '.avif', '.tif', '.tiff', '.svg']);
+const EXTENSIONES_VIDEO = new Set(['.mp4', '.mov']);
 const ANCHO_MAXIMO = 1600;
+const ANCHO_MAXIMO_VIDEO = 720;
 const TAMAÑO_MARCA = 2; // 1 = logo de ~17 % del ancho de la foto; 2 = el doble
 const PESO_MAXIMO = 200 * 1024; // 200 KB (regla del proyecto)
 
@@ -166,12 +171,59 @@ async function portada({ categoria, foto, posicion }) {
   console.log(`✓ ${destino}  ${ancho}×${info.height}  ${r.kb} KB (portada)`);
 }
 
+// Ancho y alto con los que se ve el video, ya girado (los celulares graban de lado y guardan el giro aparte).
+async function medidasVideo(origen) {
+  const d = await readFile(origen);
+  for (let i = d.indexOf('tkhd'); i !== -1; i = d.indexOf('tkhd', i + 4)) {
+    const matriz = i + 8 + (d[i + 4] === 1 ? 32 : 20) + 16;
+    const ancho = d.readUInt32BE(matriz + 36) >> 16;
+    const alto = d.readUInt32BE(matriz + 40) >> 16;
+    if (ancho && alto) return d.readInt32BE(matriz) === 0 ? { ancho: alto, alto: ancho } : { ancho, alto };
+  }
+  throw new Error(`No se pudieron leer las medidas de ${origen}`);
+}
+
+// Quema la marca en el video con GStreamer (gst-launch-1.0) y le quita el audio.
+async function procesarVideo(origen, destino) {
+  const previo = await stat(destino).catch(() => null);
+  if (previo && previo.mtimeMs > (await stat(origen)).mtimeMs) return null; // ya está hecho
+
+  const medidas = await medidasVideo(origen);
+  const ancho = Math.min(medidas.ancho, ANCHO_MAXIMO_VIDEO);
+  const alto = Math.round((medidas.alto * ancho) / medidas.ancho / 2) * 2;
+  const marca = await marcaDeAgua(ancho);
+  const carpeta = await mkdtemp(join(tmpdir(), 'marca-'));
+  const logo = join(carpeta, 'marca.png');
+  await writeFile(logo, marca.data);
+  try {
+    await promisify(execFile)('gst-launch-1.0', ['-q', '-e',
+      'filesrc', `location=${origen}`, '!', 'decodebin', '!', 'videoconvert',
+      '!', 'videoflip', 'method=automatic',
+      '!', 'videoscale', '!', `video/x-raw,width=${ancho},height=${alto}`,
+      '!', 'videoconvert', '!', 'gdkpixbufoverlay', `location=${logo}`,
+      `offset-x=${ancho - marca.ancho - marca.distancia}`, `offset-y=${alto - marca.alto - marca.distancia}`,
+      '!', 'videoconvert', '!', 'video/x-raw,format=I420',
+      '!', 'x264enc', 'speed-preset=slow', 'pass=quant', 'quantizer=25',
+      '!', 'h264parse', '!', 'mp4mux', 'faststart=true', '!', 'filesink', `location=${destino}`,
+    ], { maxBuffer: 1024 * 1024 * 10 });
+  } finally {
+    await rm(carpeta, { recursive: true, force: true });
+  }
+  return { ancho, alto, kb: Math.round((await stat(destino)).size / 1024) };
+}
+
 const codigos = (await readdir(ORIGENES, { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name);
 let total = 0;
 for (const codigo of codigos.sort()) {
   await mkdir(join(DESTINO, codigo), { recursive: true });
   for (const archivo of (await readdir(join(ORIGENES, codigo))).sort()) {
     const { name, ext } = parse(archivo);
+    if (EXTENSIONES_VIDEO.has(ext.toLowerCase())) {
+      const destinoVideo = join(DESTINO, codigo, `${name.toLowerCase()}.mp4`);
+      const v = await procesarVideo(join(ORIGENES, codigo, archivo), destinoVideo);
+      if (v) console.log(`✓ ${destinoVideo}  ${v.ancho}×${v.alto}  ${v.kb} KB (video con marca, sin audio)`);
+      continue;
+    }
     if (!EXTENSIONES.has(ext.toLowerCase())) continue;
     const destino = join(DESTINO, codigo, `${name.toLowerCase()}.webp`);
     const r = await procesar(join(ORIGENES, codigo, archivo), destino);

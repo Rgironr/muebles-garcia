@@ -17,6 +17,7 @@ const productos = defineCollection({
     colores: z.array(z.string()).default([]),
     descripcion: z.string().optional(),
     fotos: z.array(z.string()).min(1),
+    video: z.string().optional(), // Lo genera npm run fotos, con marca de agua.
     fecha_alta: z.coerce.date(),
   }),
 });

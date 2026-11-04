@@ -18,6 +18,7 @@ npm run build    # genera el sitio en dist/
   `npm run fotos` le pone el logotipo como marca de agua (los dibujos `.svg` de ejemplo van sin marca), la optimiza (WebP, ≤ 200 KB)
   y la guarda en `public/img/productos/<codigo>/`. También genera las fotos de las casas de
   inicio en `public/img/portadas/` (lista `PORTADAS` del script). No edites a mano las de `public/`.
+  Los videos (`.mp4`, `.mov`) van en la misma carpeta; salen con marca y sin audio (requiere GStreamer).
 - WhatsApp, dirección y horario: `src/config.ts`.
 - Cada cambio se anota en `mantenimiento/bitacora.md`.
 
