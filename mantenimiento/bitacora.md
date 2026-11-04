@@ -15,3 +15,4 @@
 | 2026-11-04 | Cambio | REC-004 | Se quitan descripción y medidas: solo nombre y precio (indicación de Rafael). La foto sigue siendo temporal. |
 | 2026-11-04 | Alta | REC-006 | Recámara Renata, $25,000. Foto real de la tienda con marca de agua. Nombre, precio y colores (rosa, gris y nogal). |
 | 2026-11-04 | Cambio | REC-006 | Se difumina un cuadro con personajes de Disney en la pared y su reflejo en el espejo. Foto sin retocar en `privado/fotos-sin-retoque/rec-006/`. |
+| 2026-11-04 | Alta | REC-007 | Recámara Rebeca, sin precio ("Consultar precio"). 3 imágenes con marca de agua, sacadas del video `Muebles/Recamaras/Recamara Rebeca.mp4` (482 px de ancho): reemplazar por fotos si llegan. Solo nombre. |
