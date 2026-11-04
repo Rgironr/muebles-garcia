@@ -22,7 +22,7 @@ const mensaje = p.disponible
   ? `Hola, me interesa ${p.nombre} (${p.codigo}). ¿Me pueden dar más información?\n${url}`
   : `Hola, vi ${p.nombre} (${p.codigo}) agotado. ¿Cuándo vuelve a llegar o qué parecido tienen?\n${url}`;
 ---
-<Base titulo={p.nombre} descripcion={p.descripcion.trim()} imagen={fotos[0]}>
+<Base titulo={p.nombre} descripcion={p.descripcion?.trim() || `${p.nombre} en Muebles García. Pregunta por este modelo por WhatsApp.`} imagen={fotos[0]}>
   <div class="contenedor">
     <a class="volver" href={`/${p.categoria}/`}>Volver a {categoria.nombre}</a>
 
@@ -48,7 +48,7 @@ const mensaje = p.disponible
         <p class:list={['estado', { agotado: !p.disponible }]}>
           {p.disponible ? 'Disponible' : 'Agotado por ahora'}
         </p>
-        <p class="descripcion">{p.descripcion}</p>
+        {p.descripcion && <p class="descripcion">{p.descripcion}</p>}
 
         <a class="boton boton-whatsapp pedir" href={enlaceWhatsApp(mensaje)} target="_blank" rel="noopener">
           <IconoWhatsApp /> {p.disponible ? 'Pedir por WhatsApp' : 'Preguntar cuándo llega'}
@@ -90,9 +90,9 @@ const mensaje = p.disponible
 
   .datos h1 { font-size: clamp(1.875rem, 4.5vw, 2.75rem); margin-bottom: .5rem; }
   .precio { font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; color: var(--ocre-oscuro); margin: 0; }
-  .estado { margin: .25rem 0 0; font-weight: 500; color: var(--whatsapp); }
+  .estado { margin: .25rem 0 1.25rem; font-weight: 500; color: var(--whatsapp); }
   .estado.agotado { color: var(--texto-suave); }
-  .descripcion { max-width: 60ch; margin: 1.25rem 0 1.5rem; }
+  .descripcion { max-width: 60ch; margin: 0 0 1.5rem; }
   .pedir { width: 100%; justify-content: center; font-size: 1.0625rem; padding-block: 1rem; }
   @media (min-width: 56rem) { .pedir { width: auto; } }
 

@@ -15,7 +15,7 @@ const productos = defineCollection({
     medidas: z.string().optional(),
     material: z.string().optional(),
     colores: z.array(z.string()).default([]),
-    descripcion: z.string(),
+    descripcion: z.string().optional(),
     fotos: z.array(z.string()).min(1),
     fecha_alta: z.coerce.date(),
   }),

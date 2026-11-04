@@ -69,7 +69,7 @@ destacado: false           # Aparece en la página de inicio
 medidas: "Sofá 210 x 90 x 85 cm"
 material: Tela antimanchas, estructura de madera de pino
 colores: [gris, beige]
-descripcion: >
+descripcion: >          # Opcional. Por ahora las altas van solo con nombre y precio
   Texto breve y atractivo del producto.
 fotos:
   - sal-001-1.webp
@@ -150,3 +150,4 @@ Reglas:
 | 2026-10-29 | Rediseño de inicio: portada con degradado cálido "luz de tarde" (marfil → ocre, con resplandor detrás de las casas) y las casas de categorías sobre una línea de piso común. Banda oscura de mayoreo con luz ocre y banda piedra de "Visita la tienda" al final. |
 | 2026-10-29 | Los dibujos de ejemplo (`.svg`) van **sin** marca de agua; todas las fotos reales sí la llevan. Las direcciones de las imágenes llevan una huella del contenido (`?v=…`, `src/imagenes.ts`) para que los navegadores bajen la foto nueva en cuanto cambia. |
 | 2026-11-04 | Se quita de inicio la sección "¿Tienes una mueblería?" (mayoreo), a petición de Rafael. El pie conserva "Venta al público y mayoreo". |
+| 2026-11-04 | Por ahora las altas se publican solo con nombre y precio; `descripcion` pasa a ser opcional. |
