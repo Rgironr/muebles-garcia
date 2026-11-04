@@ -52,19 +52,7 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
     </ol>
   </section>
 
-  <section class="mayoreo-fondo bloque">
-    <div class="mayoreo contenedor">
-      <div>
-        <h2>¿Tienes una mueblería?</h2>
-        <p>También vendemos por mayoreo. Escríbenos y te pasamos condiciones y catálogo.</p>
-      </div>
-      <a class="boton boton-claro" href={enlaceWhatsApp('Hola, tengo una mueblería y me interesa comprar por mayoreo.')} target="_blank" rel="noopener">
-        Pedir precios de mayoreo
-      </a>
-    </div>
-  </section>
-
-  <section class="visitanos-fondo" id="ubicacion">
+  <section class="visitanos-fondo bloque" id="ubicacion">
     <div class="visitanos contenedor">
       <div class="visitanos-texto">
         <h2>Visita la tienda</h2>
@@ -90,6 +78,7 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
 <style>
   /* Portada: luz de tarde entrando a la casa. Marfil arriba, ocre abajo, y un resplandor detrás de las casas. */
   .portada-fondo {
+    overflow-x: clip; /* la línea de piso de las casas llega hasta la orilla sin desbordar la página */
     background:
       radial-gradient(ellipse 55% 60% at 74% 62%, rgba(255, 244, 226, .95) 0%, rgba(255, 244, 226, 0) 70%),
       linear-gradient(180deg, #FBF7F0 0%, #F3E4CB 48%, #E4C597 100%);
@@ -141,22 +130,6 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
   .pasos li { counter-increment: paso; padding-top: 1rem; border-top: 3px solid var(--ocre); max-width: 34ch; }
   .pasos li::before { content: counter(paso); display: block; font-family: var(--f-display); font-weight: 800; font-size: 2rem; line-height: 1; color: var(--ocre); margin-bottom: .5rem; }
   .pasos strong { font-family: var(--f-display); display: block; font-size: 1.125rem; color: var(--carbon); }
-
-  /* Mayoreo: la misma luz ocre, ahora de noche. */
-  .mayoreo-fondo {
-    background:
-      radial-gradient(ellipse 50% 120% at 0% 0%, rgba(176, 122, 58, .45) 0%, rgba(176, 122, 58, 0) 70%),
-      linear-gradient(120deg, #24282C 0%, #2F2C29 100%);
-    color: #E4E2DE;
-  }
-  .mayoreo {
-    display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between;
-    padding-block: clamp(2.5rem, 6vw, 4rem);
-  }
-  .mayoreo h2 { color: #fff; }
-  .mayoreo p { margin: 0; color: #CFCAC2; max-width: 46ch; }
-  .boton-claro { background: var(--ocre-claro); color: var(--carbon); }
-  .boton-claro:hover { background: #fff; }
 
   .visitanos-fondo { background: var(--piedra); }
   .visitanos { display: grid; gap: 1.5rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 4.5rem); }

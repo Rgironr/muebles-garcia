@@ -149,3 +149,4 @@ Reglas:
 | 2026-10-29 | Nueva categoría **Cocinas integrales** (`/cocinas/`, prefijo `COC`), con 3 productos de ejemplo y dibujos provisionales con marca de agua. En el menú aparece como "Cocinas"; en celular el menú baja a su propio renglón. |
 | 2026-10-29 | Rediseño de inicio: portada con degradado cálido "luz de tarde" (marfil → ocre, con resplandor detrás de las casas) y las casas de categorías sobre una línea de piso común. Banda oscura de mayoreo con luz ocre y banda piedra de "Visita la tienda" al final. |
 | 2026-10-29 | Los dibujos de ejemplo (`.svg`) van **sin** marca de agua; todas las fotos reales sí la llevan. Las direcciones de las imágenes llevan una huella del contenido (`?v=…`, `src/imagenes.ts`) para que los navegadores bajen la foto nueva en cuanto cambia. |
+| 2026-11-04 | Se quita de inicio la sección "¿Tienes una mueblería?" (mayoreo), a petición de Rafael. El pie conserva "Venta al público y mayoreo". |
