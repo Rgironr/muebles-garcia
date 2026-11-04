@@ -4,14 +4,8 @@
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
-const huellas = new Map<string, string>();
-
 export function urlImagen(ruta: string) {
-  let huella = huellas.get(ruta);
-  if (!huella) {
-    huella = createHash('md5').update(readFileSync(`public${ruta}`)).digest('hex').slice(0, 8);
-    huellas.set(ruta, huella);
-  }
+  const huella = createHash('md5').update(readFileSync(`public${ruta}`)).digest('hex').slice(0, 8);
   return `${ruta}?v=${huella}`;
 }
 
