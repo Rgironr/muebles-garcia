@@ -5,8 +5,8 @@ export const NEGOCIO = {
   // Formato internacional sin espacios ni signos: 52 + 10 dígitos.
   whatsapp: '525591439289',
   whatsappVisible: '55 9143 9289',
-  direccion: 'Av. Jardines de Morelos 507, lote 10, ext. 470, Secc. Montes, Ecatepec, Edo. Méx.',
-  referencias: 'Entre Nicolás Bravo y Playa Tijuana, frente a la iglesia.',
+  direccion: 'Av. Jardines de Morelos 507, lote 10, ext. 470, Sección Playas, Ecatepec, Edo. Méx.',
+  referencias: 'Entre Nicolás Bravo y Playa Tijuana, frente a la iglesia de Sección Montes.',
   // Un renglón por grupo de días.
   horario: [
     'Lunes a viernes: 10 a.m. a 7 p.m.',
