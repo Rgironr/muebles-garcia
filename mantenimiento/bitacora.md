@@ -17,3 +17,4 @@
 | 2026-11-04 | Cambio | REC-006 | Se difumina un cuadro con personajes de Disney en la pared y su reflejo en el espejo. Foto sin retocar en `privado/fotos-sin-retoque/rec-006/`. |
 | 2026-11-04 | Alta | REC-007 | Recámara Sebastiana, sin precio ("Consultar precio"). 3 imágenes con marca de agua, sacadas del video `Muebles/Recamaras/Recamara Sebastiana.mp4` (482 px de ancho): reemplazar por fotos si llegan. Solo nombre. |
 | 2026-11-04 | Cambio | REC-007 | Se agrega el video a la ficha, con marca de agua y sin audio (480×848, 2.3 MB). Original en `privado/fotos-originales/rec-007/`. |
+| 2026-11-04 | Alta | REC-008 | Recámara Stefany, $23,300. Foto real de la tienda con marca de agua. Solo nombre y precio. |
