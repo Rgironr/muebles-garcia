@@ -22,3 +22,4 @@
 | 2026-11-04 | Cambio | REC-001, REC-002, COM-001 a COM-003, COC-001 a COC-003 | Se quitan descripción, medidas, material y colores inventados: solo nombre y "Consultar precio". |
 | 2026-11-04 | Cambio | REC-005, REC-006, REC-008 | Pasan a "Lo más pedido" en inicio, en lugar de COM-001, COM-003 y REC-001 (elegidas por Claude a petición de Rafael). |
 | 2026-11-05 | Cambio | REC-001 | Recámara Toscana matrimonial: precio $25,000 y "Contiene 7 piezas" (datos de Rafael). |
+| 2026-11-05 | Cambio | REC-007 | Recámara Sebastiana: precio $15,500. |
