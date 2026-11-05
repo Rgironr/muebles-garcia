@@ -154,3 +154,4 @@ Reglas:
 | 2026-11-04 | Por ahora las altas se publican solo con nombre y precio; `descripcion` pasa a ser opcional. |
 | 2026-11-04 | La ficha de producto puede mostrar un video (campo `video`), debajo de las fotos: no se descarga hasta darle reproducir. Los videos se publican con marca de agua y sin audio. |
 | 2026-11-04 | Se quita el aviso "Sitio en construcción" (`productosDeEjemplo: false`). |
+| 2026-11-05 | Aviso del Buen Fin en inicio (`public/img/promos/`, sin marca de agua porque no es foto de producto), que se oculta solo el 18 de noviembre de 2026. Usar el logo requiere que el negocio esté registrado en elbuenfin.org. |

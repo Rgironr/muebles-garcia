@@ -34,6 +34,21 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
     </div>
   </section>
 
+  <section class="buen-fin contenedor">
+    <img src={urlImagen('/img/promos/buen-fin-2026.webp')} alt="El Buen Fin, del 13 al 17 de noviembre" width="339" height="335" />
+    <div>
+      <h2>Este Buen Fin, pregúntanos</h2>
+      <p>Del 13 al 17 de noviembre, escríbenos por WhatsApp o visítanos en la tienda.</p>
+      <a class="boton boton-whatsapp" href={enlaceWhatsApp('Hola, vi su sitio web y quiero información para el Buen Fin.')} target="_blank" rel="noopener">
+        <IconoWhatsApp /> Preguntar por WhatsApp
+      </a>
+    </div>
+    {/* El aviso desaparece solo al terminar el Buen Fin (hora del centro de México). */}
+    <script is:inline>
+      if (new Date() >= new Date('2026-11-18T00:00:00-06:00')) document.currentScript.parentElement.remove();
+    </script>
+  </section>
+
   {destacados.length > 0 && (
     <section class="contenedor bloque">
       <h2>Lo más pedido</h2>
@@ -122,6 +137,11 @@ const destacados = (await getCollection('productos', ({ data }) => data.destacad
   /* Único momento animado: las casas se levantan al cargar. */
   @keyframes levantar { from { opacity: 0; transform: translateY(24px); } }
   .portada-casas li { animation: levantar .7s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 140ms + 100ms); }
+
+  .buen-fin { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem clamp(1.5rem, 4vw, 3rem); margin-top: clamp(2.5rem, 6vw, 4rem); }
+  .buen-fin img { width: clamp(9rem, 22vw, 12rem); height: auto; flex: none; }
+  .buen-fin div { flex: 1 1 18rem; }
+  .buen-fin p { margin: 0 0 1.25rem; color: var(--texto-suave); max-width: 38ch; }
 
   .bloque { margin-top: clamp(3.5rem, 8vw, 6rem); }
 
