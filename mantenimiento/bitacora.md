@@ -24,3 +24,4 @@
 | 2026-11-05 | Cambio | REC-001 | Recámara Toscana matrimonial: precio $25,000 y "Contiene 7 piezas" (datos de Rafael). |
 | 2026-11-05 | Cambio | REC-007 | Recámara Sebastiana: precio $15,500. |
 | 2026-11-07 | Alta | REC-009 | Recámara Corona, $15,000. Foto real de la tienda con marca de agua. Nombre, precio y color (rosa). |
+| 2026-11-07 | Alta | REC-010 | Recámara Berlín, $15,500. 5 piezas. Colores rosa y gris. Foto real de la tienda con marca de agua. |
