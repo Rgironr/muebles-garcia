@@ -28,3 +28,4 @@
 | 2026-11-18 | Alta | REC-011 | Vanity Perla, $7,990. Descripción "Tocador." Imagen enviada por Rafael, con marca de agua (vertical; la marca va en la zona central 4:3). |
 | 2026-11-18 | Cambio | — | Se quita de inicio el aviso del Buen Fin y su imagen (`public/img/promos/buen-fin-2026.webp`). |
 | 2026-11-18 | Cambio | REC-011 | Se renombra a "Tocador Vanity Perla" para que quede claro que es un tocador (sigue en Recámaras). |
+| 2026-11-18 | Cambio | REC-011 | Se agregan colores: gris, chocolate y blanco. |
