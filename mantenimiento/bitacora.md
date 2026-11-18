@@ -25,3 +25,5 @@
 | 2026-11-05 | Cambio | REC-007 | Recámara Sebastiana: precio $15,500. |
 | 2026-11-07 | Alta | REC-009 | Recámara Corona, $15,000. Foto real de la tienda con marca de agua. Nombre, precio y color (rosa). |
 | 2026-11-07 | Alta | REC-010 | Recámara Berlín, $15,500. 5 piezas. Colores rosa y gris. Foto real de la tienda con marca de agua. |
+| 2026-11-18 | Alta | REC-011 | Vanity Perla, $7,990. Descripción "Tocador." Imagen enviada por Rafael, con marca de agua (vertical; la marca va en la zona central 4:3). |
+| 2026-11-18 | Cambio | — | Se quita de inicio el aviso del Buen Fin y su imagen (`public/img/promos/buen-fin-2026.webp`). |
